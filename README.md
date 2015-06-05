@@ -9,57 +9,49 @@ Sakeven's Vim config
 will be good for you.
 
 ## 基础命令
-
-四个方向键
-```
- k
-h l
- j
-```
-当然四个传统大方向键也可以控制光标
-
-`dd`删除当前行，并保存至缓冲区(可供粘贴)
-
-`D`删除当前光标位置到行末，并保存至缓冲区(可供粘贴), 和`p``P`命令结合，是粘贴到当前光标位置之后或之前
-
-`yy`复制当前行
-
-`nyy`复制从当前行开始的n行
-
-`p`粘贴到当前行之下
-
-`P`粘贴到当前行之上
-
-
-`o`在当前行之下插入空行
-`O`在当前行之下插入空行
-
-`:n1,n2 m n3`把n1-n2行移动到n3行之下
-
-`:n1,n2 co n3`把n1-n2行复制到n3行之下
-
-`:n1,n2 d`删除n1-n2行
-
-大多数情况下我们在用vim coding，所以我们需要一些插件增强vim。
-## 语言支持
-"-----------------
-" Golang
-"-----------------
-Plugin 'fatih/vim-go'
-Bundle 'dgryski/vim-godef'
-Bundle 'Blackrush/vim-gocode'
-
-
-## 代码补全
-"------------------
-" Code Completions
-"------------------
-Plugin 'Valloric/YouCompleteMe'
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'ervandew/supertab'
-Bundle 'honza/vim-snippets'
-" snipmate dependencies
+  
+四个方向键  
+```  
+ k  
+h l  
+ j  
+```  
+当然四个传统大方向键也可以控制光标  
+  
+`dd`删除当前行，并保存至缓冲区(可供粘贴)  
+`D`删除当前光标位置到行末，并保存至缓冲区(可供粘贴), 和`p``P`命令结合，是粘贴到当前光标位置之后或之前  
+`yy`复制当前行  
+`nyy`复制从当前行开始的n行  
+`p`粘贴到当前行之下  
+`P`粘贴到当前行之上  
+  
+`o`在当前行之下插入空行  
+`O`在当前行之下插入空行  
+  
+`:n1,n2 m n3`把n1-n2行移动到n3行之下  
+`:n1,n2 co n3`把n1-n2行复制到n3行之下  
+`:n1,n2 d`删除n1-n2行  
+  
+大多数情况下我们在用vim coding，所以我们需要一些插件增强vim。  
+## 语言支持  
+"-----------------  
+" Golang  
+"-----------------  
+Plugin 'fatih/vim-go'  
+Bundle 'dgryski/vim-godef'  
+Bundle 'Blackrush/vim-gocode'  
+  
+  
+## 代码补全  
+"------------------  
+" Code Completions  
+"------------------  
+Plugin 'Valloric/YouCompleteMe'  
+Bundle 'Shougo/neocomplcache.vim'  
+Bundle 'garbas/vim-snipmate'  
+Bundle 'ervandew/supertab'  
+Bundle 'honza/vim-snippets'  
+" snipmate dependencies  
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 
