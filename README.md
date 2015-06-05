@@ -1,196 +1,131 @@
-Maple's Vim config
+Sakeven's Vim config
 ==================
 
-I use `vundle` to manage my plugins, which makes my `.vim` directory clean
-and tidy. If you are new to vim, the following two posts
+`vundle` 是vim下非常好用的插件管理器
 
 * [Vim Introduction and Tutorial](http://blog.interlinked.org/tutorials/vim_tutorial.html)
 * [Vim plugins I use](http://mirnazim.org/writings/vim-plugins-i-use/) 
 
 will be good for you.
 
-#### Most of the time we are writing code so we need:
-## Code Completions
+## 基础命令
 
-Such as completions for variable names and function names(neocomplcache), expanding snippets(snipMate), auto closing brackets/brace/quote(vim-smartinput) and fast expand expressions to HTML(ZenCoding).
-
-* [neocomplcache](http://github.com/Shougo/neocomplcache) - Ultimate auto completion system for Vim.
-* [snipMate](https://github.com/garbas/vim-snipmate) - Plugin for using TextMate-style snippets in Vim.
-* [supertab](http://github.com/ervandew/supertab) - Perform all your vim insert mode completions with Tab.
-* [ZenCoding](http://github.com/mattn/zencoding-vim) - High speed HTML and CSS coding.
-* [delimitMate](http://github.com/Raimondi/delimitMate) - Provides auto-balancing and some expansions for parens, quotes, etc.
-
-### Shortcuts
-
-* `Tab`  -> Rotate across the completion list
-* `Tab` -> Expand snippets or jump to the next placeholder of snippet
-* `Ctrl` + `j` -> Call zen-coding expansion on html tags
-
-### Dependencies
-
-Compile Vim with `--enable-pythoninterp` and `--enable-rubyinterp` to enable powerful syntax completion supplied by neocomplcache.
-
-``` bash
-brew install macvim --override-system-vim  # OS X
-yaourt -S gvim                             # ArchLinux
-sudo apt-get install vim-gtk               # Ubuntu
+四个方向键
 ```
-
-### Tutorial
-
-``` vim
-:help zencoding
+ k
+h l
+ j
 ```
+当然四个传统大方向键也可以控制光标
 
-[Movie teaching zencoding.vim](http://mattn.github.com/zencoding-vim/)
+`dd`删除当前行，并保存至缓冲区(可供粘贴)
+`D`删除当前光标位置到行末，并保存至缓冲区(可供粘贴), 和`p``P`命令结合，是粘贴到当前光标位置之后或之前
+`yy`复制当前行
+`nyy`复制从当前行开始的n行
+`p`粘贴到当前行之下
+`P`粘贴到当前行之上
 
-### Screenshots
+`o`在当前行之下插入空行
+`O`在当前行之下插入空行
 
-![Completions](https://raw.github.com/humiaozuzu/dot-vimrc/master/screenshots/completions.gif)
-![Snippets](https://raw.github.com/humiaozuzu/dot-vimrc/master/screenshots/snippets.gif)
+`:n1,n2 m n3`把n1-n2行移动到n3行之下
+`:n1,n2 co n3`把n1-n2行复制到n3行之下
+`:n1,n2 d`删除n1-n2行
 
-#### Sometimes we need to jump to previous positions to copy/paste or do some fixes:
-## Fast navigation
+大多数情况下我们在用vim coding，所以我们需要一些插件增强vim。
+## 语言支持
+"-----------------
+" Golang
+"-----------------
+Plugin 'fatih/vim-go'
+Bundle 'dgryski/vim-godef'
+Bundle 'Blackrush/vim-gocode'
 
-* [matchit](http://github.com/tsaleh/vim-matchit) - Extended % matching for HTML, LaTeX, and many other languages.
-* [EasyMotion](https://github.com/Lokaltog/vim-easymotion) - Vim motions on speed!
 
-### Tutorial
+## 代码补全
+"------------------
+" Code Completions
+"------------------
+Plugin 'Valloric/YouCompleteMe'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'ervandew/supertab'
+Bundle 'honza/vim-snippets'
+" snipmate dependencies
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
 
-``` vim
-:help easymotion
-```
+"-----------------
+" Fast navigation
+"-----------------
+Bundle 'Lokaltog/vim-easymotion'
 
-### Shortcuts
-* `%` -> Jump between brackets and html/xml tags
-* `<leader>` + `w` -> Beginning of the word.
-* `<leader>` + `f` + `{char}` -> Find {char} to the right.
+"--------------
+" Fast editing
+"--------------
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'sjl/gundo.vim'
+"Bundle 'Raimondi/delimitMate'
+Bundle 'kana/vim-smartinput'
+Bundle 'godlygeek/tabular'
+Bundle 'nathanaelkane/vim-indent-guides'
 
-#### Doing fixes should be as fast as possible!
-## Fast editing
+"--------------
+" IDE features
+"--------------
+"目录树
+Bundle 'scrooloose/nerdtree'
+" taglist 函数、变量的显示
+Bundle 'majutsushi/tagbar'
+" tabbar 标签跳转
+Bundle 'humiaozuzu/TabBar'
+"Bundle 'mileszs/ack.vim' 全局查找
+" ctrlp 文件跳转
+Bundle 'kien/ctrlp.vim'
+" Git 工具
+Bundle 'tpope/vim-fugitive'
+" powerline 状态栏美化
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'scrooloose/syntastic'
 
-* [surround](http://github.com/tpope/vim-surround) - Easily delete, change and add such surroundings in pairs.
-* [nerdcommenter](http://github.com/scrooloose/nerdcommenter) - Easy commenting of code for many filetypes.
-* [Gundo](https://github.com/sjl/gundo.vim/) - visualize your Vim undo tree.
-* [tabular](https://github.com/godlygeek/tabular) - Vim script for text filtering and alignment.
-* [IndentGuides](https://github.com/nathanaelkane/vim-indent-guides) - A Vim plugin for visually displaying indent levels in code.
+"-------------
+" Other Utils
+" ------------
+Bundle 'nvie/vim-togglemouse'
 
-### Tutorial
+"----------------------------------------
+" Syntax/Indent for language enhancement
+"----------------------------------------
+"Bundle 'tpope/vim-rails'
+"Bundle 'digitaltoad/vim-jade'
 
-``` vim
-:help text-objexts
-:help surround
-:help tabular
-```
+"Bundle 'groenewege/vim-less'
+"Bundle 'wavded/vim-stylus'
 
-### Shortcuts
+" markup language
+Bundle 'tpope/vim-markdown'
 
-* `%` -> Jump between brackets and html/xml tags
-* `<leader>` + `c` + `<space>` -> Toggle comment
-* `F3` -> Toggle Gundo viewer
-* `F4` -> Toggle Indent Guides 
+" Ruby
+"Bundle 'tpope/vim-endwise'
 
-## IDE features
+" Scheme
+" 括号匹配
+Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'wlangstroth/vim-racket'
 
-* [nerdtree](http://github.com/scrooloose/nerdtree) - A tree explorer plugin for navigating the filesystem.
-* [tabbar](http://github.com/humiaozuzu/TabBar) -  Add tab bar and quickt tab switch with alt+1~9.
-* [tagbar](http://github.com/majutsushi/tagbar) - Displays the tags of the current file in a sidebar.
-* [ack-vim](http://github.com/mileszs/ack.vim) - Front for the Perl module App::Ack.
-* [ctrlp](https://github.com/kien/ctrlp.vim) - Fuzzy file, buffer, mru and tag finder.
-* [powerline](https://github.com/Lokaltog/vim-powerline) - The ultimate vim statusline utility.
-* [fugitive](https://github.com/tpope/vim-fugitive/) - a Git wrapper so awesome, it should be illegal.
-* [syntastic](https://github.com/scrooloose/syntastic) - Syntax checking hacks for vim.
+"--------------
+" Color Scheme
+"--------------
+Bundle 'rickharris/vim-blackboard'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'rickharris/vim-monokai'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'Lokaltog/vim-distinguished'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'vim-scripts/molokai'
 
-### Dependencie
 
-```bash
-yaourt -S ack ctags                  # ArchLinux
-sudo apt-get install ack-grep ctags  # Ubuntu
-brew install ack ctags               # OS X
-```
-
-For syntax check tools:
-
-Languages    | Lint Tools    | Install guide
------------- | ------------- | ------------
-C            | gcc           | built-in
-CPP          | g++           | built-in
-CoffeeScript | coffee        | `npm install -g coffeelint`
-CSS          | csslint       | `npm install -g csslint`
-Erlang       | escript       | built-in
-Go           | go            | built-in
-Haml         | haml          | built-in
-Haskell      | ghc-mod       | `cabal install ghc-mod`
-HTML         | tidy          | built-in
-Java         | javac         | built-in
-Javascript   | jslint/jshint | `npm install -g jslint/jshint`
-Json         | jsonlint      | `npm install -g jsonlint`
-Less         | lessc         | built-in
-Lisp         | clisp         | built-in
-Lua          | luac          | built-in
-Perl         | perl          | built-in
-PHP          | php           | built-in
-Puppet       | puppet        | built-in
-Python       | pylint/pyflakes/flake8 | `sudo pip install pylint/pyflakes/flake8`
-Ruby         | ruby          | built-in
-Scala        | scala         | built-in
-Sass         | sass          | built-in
-Scss         | scss/compass  | `gem install compass`
-XML          | xmllint       | built-in
-YAML         | js-yaml       | `npm install -g js-yaml`
-
-### Shortcuts
-* `F5` -> Toggle Nerd-Tree file viewer
-* `F6` -> Toggle tagbar
-* `Ctrl` + `p` -> Toggle ctrlp
-* `Alt` + `1~9` -> Switch between multiple buffers
-* `Ctrl` + `h/j/k/l` -> Moving between spilt windows
-* `:Ack` or `<leader>` + `a` -> Toggle Ack searching
-
-### Screenshots
-
-![Vim IDE 1](https://raw.github.com/humiaozuzu/dot-vimrc/master/screenshots/vim.jpg)
-![Vim IDE 2](https://raw.github.com/humiaozuzu/dot-vimrc/master/screenshots/vim2.jpg)
-
-## Other Utils
-
-* [fcitx-status](https://github.com/humiaozuzu/fcitx-status) - automatic change status of fcitx in vim.
-* [togglemouse](https://github.com/nvie/vim-togglemouse/) - Toggles the mouse focus between Vim and your terminal emulator, allowing terminal emulator mouse commands, like copy/paste.
-
-### Shortcuts
-
-* `F12` -> Toggle Mouse
-
-## Better syntax/indent for language enhancement
-
-* [markdown](http://github.com/tpope/vim-markdown) -  Syntax highlight for Markdown text files.
-* [jquery](http://github.com/nono/jquery.vim) - Syntax file for jQuery in ViM.
-* [javascript](http://github.com/pangloss/vim-javascript) - Vastly improved vim's javascript indentation.
-* [coffee-script](https://github.com/kchmck/vim-coffee-script) - CoffeeScript support for vim.
-* [html5](https://github.com/othree/html5.vim) - HTML5 omnicomplete and syntax.
-* [haml](https://github.com/tpope/vim-haml) - Vim runtime files for Haml, Sass, and SCSS.
-
-## Themes
-
-* [blackboard](https://github.com/rickharris/vim-blackboard) - Textmate's Blackboard theme for vim (with iTerm2 theme)
-* [molokai](https://github.com/rickharris/vim-monokai) - A port of the monokai scheme for TextMate
-* [solarized](https://github.com/altercation/vim-colors-solarized) - precision colorscheme for the vim text editor
-* [vividchalk](https://github.com/tpope/vim-vividchalk) - colorscheme based on the Vibrant Ink theme for TextMate
-* [distinguished](https://github.com/Lokaltog/vim-distinguished) - A dark vim color scheme for 256-color terminals.
-
-## Additional functions
-
-1. File encoding auto detection
-* Hightlight current line and column
-* Automatically jump to the last edited location
-* `:w`/`:wq` error correction
-* Remove trailing white space
-* Code folding is disabled, enable it as you wish
-* Indent style:
-   * JavaScript - Use soft-tabs with a two space indent(According to this [Post](http://atroche.org/post/30994290348/javascript-indentation)).
-   * HTML/CSS - Use soft-tabs with a two space indent(According to Google and Github's HTML/CSS style guide, just Google it).
-   * PHP - Use soft-tabs with a two space indent(According to [Apache PHP Style Guide](http://svn.apache.org/repos/asf/shindig/trunk/php/docs/style-guide.html)).
-   * Python - Use soft-tabs with a four space indent([PEP8](http://www.python.org/dev/peps/pep-0008/)).
 
 ## Installation
 
@@ -201,7 +136,7 @@ YAML         | js-yaml       | `npm install -g js-yaml`
 
 2. Clone and install this repo:
 
-        git clone git://github.com/lintianzhi/dot-vimrc.git ~/.vim
+        git clone git://github.com/sakeven/.vim.git ~/.vim
         ln -s ~/.vim/vimrc ~/.vimrc
         
 3. Setup `Vundle`:
@@ -220,8 +155,3 @@ All plugins are listed in file `bundles.vim` with detailed comments, just add pl
 
 Other configurations are also well organized in vimrc.
 
-## Known issues
-
-* Compeletions are not well supported for statically typed languages(c/c++)
-* Snippets are not shown in completions popups
-* May has some conflicts with GVIM

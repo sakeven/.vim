@@ -11,11 +11,14 @@ Bundle 'gmarik/vundle'
 "-----------------
 " Golang
 "-----------------
-"Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
+Bundle 'dgryski/vim-godef'
+Bundle 'Blackrush/vim-gocode'
 
 "------------------
 " Code Completions
 "------------------
+Plugin 'Valloric/YouCompleteMe'
 Bundle 'Shougo/neocomplcache.vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'ervandew/supertab'

@@ -56,19 +56,16 @@ set matchtime=2                                                   " show matchin
 set matchpairs+=<:>                                               " specially for html
 "set relativenumber
 "set ruler                                                         " show cursor position in status bar
-"set showmode                                                      " show mode in status bar (insert/replace/...)
+set showmode                                                      " show mode in status bar (insert/replace/...)
 
 " Default Indentation
 set autoindent
 set smartindent     " indent when
-set tabstop=4       " tab width
-"set softtabstop=4   " backspace & 
+"set tabstop=4       " tab width
+set softtabstop=4   " backspace & 
 set shiftwidth=4    " indent width
 "set textwidth=79
 set expandtab       " expand tab to space
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
@@ -198,6 +195,7 @@ nmap <F3> :GundoToggle<cr>
 nmap <F4> :IndentGuidesToggle<cr>
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
+imap <tab> <C-x><C-o>
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
@@ -212,25 +210,3 @@ nnoremap <c-l> <c-w>l
 :command Q q
 :command Qa qa
 :command QA qa
-
-" for macvim
-if has("gui_running")
-    set go=aAce  " remove toolbar
-    "set transparency=30
-    set guifont=Monaco:h13
-    set showtabline=2
-    set columns=140
-    set lines=40
-    noremap <D-M-Left> :tabprevious<cr>
-    noremap <D-M-Right> :tabnext<cr>
-    map <D-1> 1gt
-    map <D-2> 2gt
-    map <D-3> 3gt
-    map <D-4> 4gt
-    map <D-5> 5gt
-    map <D-6> 6gt
-    map <D-7> 7gt
-    map <D-8> 8gt
-    map <D-9> 9gt
-    map <D-0> :tablast<CR>
-endif
