@@ -31,13 +31,19 @@ h l
 `:n1,n2 m n3`把n1-n2行移动到n3行之下  
 `:n1,n2 co n3`把n1-n2行复制到n3行之下  
 `:n1,n2 d`删除n1-n2行  
-  
+`J`将下一行合并到当前行  
+
+`:n`跳到第n行
+
+`/pattern`从当前光标开始向后匹配pattern  
+`?pattern`从当前光标开始向前匹配pattern  
+
 大多数情况下我们在用vim coding，所以我们需要一些插件增强vim。  
 ## 语言支持  
 "-----------------  
 " Golang  
 "-----------------  
-Plugin 'fatih/vim-go'  
+Bundle 'fatih/vim-go'  
 Bundle 'dgryski/vim-godef'  
 Bundle 'Blackrush/vim-gocode'  
   
@@ -112,7 +118,6 @@ Bundle 'tpope/vim-markdown'
 " Scheme
 " 括号匹配
 Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'wlangstroth/vim-racket'
 
 "--------------
 " Color Scheme

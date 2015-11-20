@@ -4,14 +4,17 @@ source ~/.vim/bundles.vim
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
 " enable filetype dectection and ft specific plugin/indent
-filetype plugin indent on
+"filetype plugin indent on
 
 " enable syntax hightlight and completion 
 syntax enable
 syntax on
 
 " color theme
-color solarized
+"color solarized
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 "let g:molokai_original = 0
 "color molokai
 
@@ -61,22 +64,12 @@ set showmode                                                      " show mode in
 " Default Indentation
 set autoindent
 set smartindent     " indent when
-"set tabstop=4       " tab width
-set softtabstop=4   " backspace & 
-set shiftwidth=4    " indent width
+set tabstop=4       " tab width
+"set softtabstop=4   " backspace & 
+"set shiftwidth=4    " indent width
 "set textwidth=79
 set expandtab       " expand tab to space
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-
-" syntax support
-autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
-" js
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
 
 " Rainbow parentheses for Lisp and variants
 let g:rbpt_colorpairs = [
@@ -119,20 +112,6 @@ let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 " tag for coffee
 if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-
   let g:tagbar_type_markdown = {
     \ 'ctagstype' : 'markdown',
     \ 'sort' : 0,
@@ -150,20 +129,12 @@ let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$', '\.swp$']
 let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
+"autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
 " powerline
 let g:Powerline_symbols = 'fancy'
-
-" NeoComplCache
-let g:neocomplcache_enable_at_startup=1
-let g:neoComplcache_disableautocomplete=1
-"let g:neocomplcache_enable_underbar_completion = 1
-"let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-set completeopt-=preview
 
 imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
@@ -171,9 +142,7 @@ imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
 smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
@@ -187,6 +156,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
+
+" go
+let g:go_fmt_command = "goimports"
 
 " Keybindings for plugin toggle
 nmap <F5> :TagbarToggle<cr>
