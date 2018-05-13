@@ -12,19 +12,11 @@ Bundle 'gmarik/vundle'
 " Golang
 "-----------------
 Plugin 'fatih/vim-go'
-Bundle 'dgryski/vim-godef'
-Bundle 'Blackrush/vim-gocode'
 
 "------------------
 " Code Completions
 "------------------
-Plugin 'Valloric/YouCompleteMe'
-Bundle 'garbas/vim-snipmate'
 Bundle 'ervandew/supertab'
-Bundle 'honza/vim-snippets'
-" snipmate dependencies
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
 
 "-----------------
 " Fast navigation
@@ -35,12 +27,8 @@ Bundle 'Lokaltog/vim-easymotion'
 " Fast editing
 "--------------
 Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'sjl/gundo.vim'
-"Bundle 'Raimondi/delimitMate'
 Bundle 'kana/vim-smartinput'
-Bundle 'godlygeek/tabular'
-Bundle 'nathanaelkane/vim-indent-guides'
+
 
 "--------------
 " IDE features
@@ -59,11 +47,6 @@ Bundle 'tpope/vim-fugitive'
 " powerline 状态栏美化
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
-
-"-------------
-" Other Utils
-" ------------
-Bundle 'nvie/vim-togglemouse'
 
 "----------------------------------------
 " Syntax/Indent for language enhancement
@@ -95,5 +78,6 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'vim-scripts/molokai'
+Bundle 'sjl/badwolf'
 
 filetype plugin indent on     " required!
