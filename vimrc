@@ -11,12 +11,11 @@ syntax enable
 syntax on
 
 " color theme
-"color solarized
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
-"let g:molokai_original = 0
-"color molokai
+" color solarized
+" let g:solarized_termcolors=256
+" highlight Normal ctermfg=lightgray ctermbg=black
+" set background=dark
+" colorscheme solarized
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -27,7 +26,7 @@ set cursorline cursorcolumn
 set incsearch
 set hlsearch
 "set highlight 	" conflict with highlight current line
-set ignorecase
+"set ignorecase
 set smartcase
 
 " editor settings
@@ -46,10 +45,10 @@ set backspace=indent,eol,start                                    " More powerfu
 
 " display settings
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=a                                                       " use mouse in all modes
+set mouse-=a                                                       " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
-set scrolloff=2                                                   " 2 lines above/below cursor when scrolling
+set scrolloff=3                                                   " 2 lines above/below cursor when scrolling
 set number                                                        " show line numbers
 set showmatch                                                     " show matching bracket (briefly jump)
 set showcmd                                                       " show typed command in status bar
@@ -62,14 +61,18 @@ set matchpairs+=<:>                                               " specially fo
 set showmode                                                      " show mode in status bar (insert/replace/...)
 
 " Default Indentation
+set smartindent
+set shiftwidth=2
+set softtabstop=4
+set expandtab
 set autoindent
-set smartindent     " indent when
-set tabstop=4       " tab width
-"set softtabstop=4   " backspace & 
-"set shiftwidth=4    " indent width
-"set textwidth=79
-set expandtab       " expand tab to space
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+set ruler
+set textwidth=80
+set wrap
+
+" ycm
+let g:ycm_path_to_python_interpreter="/home/tops/bin/python"
+
 
 " Rainbow parentheses for Lisp and variants
 let g:rbpt_colorpairs = [
@@ -100,9 +103,6 @@ hi Tb_Normal guifg=white ctermfg=white
 hi Tb_Changed guifg=green ctermfg=green
 hi Tb_VisibleNormal ctermbg=252 ctermfg=235
 hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
-
-" easy-motion
-let g:EasyMotion_leader_key = '<Leader>'
 
 " Tagbar
 let g:tagbar_left=1
@@ -136,16 +136,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " powerline
 let g:Powerline_symbols = 'fancy'
 
-imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-
-" Enable omni completion.
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
-
 " SuperTab
 "let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
@@ -163,8 +153,6 @@ let g:go_fmt_command = "goimports"
 " Keybindings for plugin toggle
 nmap <F5> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
-nmap <F3> :GundoToggle<cr>
-nmap <F4> :IndentGuidesToggle<cr>
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 imap <tab> <C-x><C-o>
