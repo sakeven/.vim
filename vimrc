@@ -2,6 +2,7 @@ source ~/.vim/bundles.vim
 
 " encoding dectection
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set encoding=utf-8
 
 " enable filetype dectection and ft specific plugin/indent
 "filetype plugin indent on
@@ -26,7 +27,7 @@ set cursorline cursorcolumn
 set incsearch
 set hlsearch
 "set highlight 	" conflict with highlight current line
-"set ignorecase
+set ignorecase
 set smartcase
 
 " editor settings
@@ -71,7 +72,7 @@ set textwidth=80
 set wrap
 
 " ycm
-let g:ycm_path_to_python_interpreter="/home/tops/bin/python"
+" let g:ycm_path_to_python_interpreter="/home/tops/bin/python"
 
 
 " Rainbow parentheses for Lisp and variants
@@ -121,6 +122,8 @@ if executable('coffeetags')
     \ }
 endif
 
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+
 " Nerd Tree 
 let NERDChristmasTree=0
 let NERDTreeWinSize=30
@@ -129,8 +132,8 @@ let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$', '\.swp$']
 let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
-"autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd VimEnter * NERDTree
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
 " powerline
@@ -145,7 +148,8 @@ let g:SuperTabRetainCompletionType=2
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+" main window
+autocmd VimEnter * wincmd p
 
 " go
 let g:go_fmt_command = "goimports"
@@ -153,6 +157,7 @@ let g:go_fmt_command = "goimports"
 " Keybindings for plugin toggle
 nmap <F5> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
+nmap gc :GoCoverage<cr>
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 imap <tab> <C-x><C-o>
@@ -170,3 +175,20 @@ nnoremap <c-l> <c-w>l
 :command Q q
 :command Qa qa
 :command QA qa
+
+
+" easy for copy
+let g:copymode=0
+
+function ToggleCopy()
+  let g:copymode=!g:copymode
+  if g:copymode
+    set nonumber
+  else
+    set number
+  endif
+  :TagbarToggle
+  :NERDTreeToggle
+endfunction
+
+map <F7> :call ToggleCopy()<cr>
