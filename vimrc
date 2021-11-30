@@ -130,10 +130,11 @@ let NERDTreeWinSize=30
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$', '\.swp$']
 let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
-let NERDTreeShowBookmarks=1
+let NERDTreeShowBookmarks=0
 let NERDTreeWinPos = "right"
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 
 
 " powerline
@@ -149,10 +150,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " main window
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * wincmd p
 
 " go
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = goimports"
 
 " Keybindings for plugin toggle
 nmap <F5> :TagbarToggle<cr>
@@ -184,11 +185,14 @@ function ToggleCopy()
   let g:copymode=!g:copymode
   if g:copymode
     set nonumber
+    :TagbarClose
+    :NERDTreeClose
   else
     set number
+    :NERDTree
+    :wincmd w
+    :TagbarOpen
   endif
-  :TagbarToggle
-  :NERDTreeToggle
 endfunction
 
 map <F7> :call ToggleCopy()<cr>
